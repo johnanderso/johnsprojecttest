@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Test v1.0</title>
+    <script>
+        // MOVING THE LOGIC TO THE TOP SO IT LOADS FIRST
+        function showPage(pageId) {
+            var pages = document.getElementsByClassName('page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].style.display = 'none';
+            }
+            document.getElementById(pageId).style.display = 'block';
+            
+            // Special logic for the secret reveal
+            if(pageId === 'p3') {
+                document.body.style.backgroundColor = '#fff0f5';
+            }
+        }
+
+        var scale = 1;
+        function growYes() {
+            scale += 0.8;
+            document.getElementById('yesBtn').style.transform = "scale(" + scale + ")";
+            document.getElementById('noBtn').innerHTML = "Try again? 😉";
+        }
+
+        function celebrate() {
+            showPage('p5');
+            // Stickers logic
+            for (var i = 0; i < 20; i++) {
+                var s = document.createElement('div');
+                s.innerHTML = '💖';
+                s.style.position = 'fixed';
+                s.style.left = Math.random() * 100 + 'vw';
+                s.style.top = Math.random() * 100 + 'vh';
+                s.style.fontSize = '30px';
+                s.style.zIndex = '100';
+                document.body.appendChild(s);
+            }
+        }
+    </script>
+    <style>
+        body { margin: 0; background: #f4f4f9; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; transition: 1s; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 85%; max-width: 350px; }
+        .page { display: none; }
+        .active-start { display: block; }
+        h2 { color: #333; }
+        button { background: #4a90e2; color: white; border: none; padding: 15px; border-radius: 10px; font-size: 16px; margin-top: 20px; width: 100%; cursor: pointer; transition: 0.3s; }
+        .pink-btn { background: #ff4d8d !important; border-radius: 25px !important; }
+        #noBtn { background: #eee; color: #d63384; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div id="p1" class="page active-start">
+            <h1>💻</h1>
+            <h2>Tech Test v1.0</h2>
+            <p>Hey Favour! Testing a new layout. Can you check if the transition works?</p>
+            <button onclick="showPage('p2')">Run Test Case</button>
+        </div>
+        <div id="p2" class="page">
+            <h1>📊</h1>
+            <h2>Step 2</h2>
+            <p>Looking good! I actually coded a hidden message into the next block. Ready?</p>
+            <button onclick="showPage('p3')">View Message</button>
+        </div>
+        <div id="p3" class="page">
+            <h1 style="color:#d63384">😌</h1>
+            <h2 style="color:#d63384">Actually...</h2>
+            <p>The tech project was just a cover. I wanted to ask you something special.</p>
+            <button class="pink-btn" onclick="showPage('p4')">Next...</button>
+        </div>
+        <div id="p4" class="page">
+            <h1 style="color:#d63384">💖</h1>
+            <h2 style="color:#d63384">Favour...</h2>
+            <p>Will you be my Valentine? 🥺🌹</p>
+            <button id="yesBtn" class="pink-btn" onclick="celebrate()">Yes! 💘</button>
+            <button id="noBtn" onclick="growYes()">No 🙈</button>
+        </div>
+        <div id="p5" class="page">
+            <h1>🥰🥳</h1>
+            <h2 style="color:#d63384">YAYYYY!</h2>
+            <p>You made my day! ❤️</p>
+            <p><a href="https://www.youtube.com/watch?v=2Vv-BfVoq4g" target="_blank" style="color:#d63384">Play Our Song 🎵</a></p>
+        </div>
+    </div>
+</body>
+</html>
